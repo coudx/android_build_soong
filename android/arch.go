@@ -26,12 +26,13 @@ import (
 var (
 	archTypeList []ArchType
 
-	Arm    = newArch("arm", "lib32")
-	Arm64  = newArch("arm64", "lib64")
-	Mips   = newArch("mips", "lib32")
-	Mips64 = newArch("mips64", "lib64")
-	X86    = newArch("x86", "lib32")
-	X86_64 = newArch("x86_64", "lib64")
+	Aarch64 = newArch("aarch64", "lib64")
+	Arm     = newArch("arm", "lib32")
+	Arm64   = newArch("arm64", "lib64")
+	Mips    = newArch("mips", "lib32")
+	Mips64  = newArch("mips64", "lib64")
+	X86     = newArch("x86", "lib32")
+	X86_64  = newArch("x86_64", "lib64")
 
 	Common = ArchType{
 		Name: "common",
@@ -39,12 +40,13 @@ var (
 )
 
 var archTypeMap = map[string]ArchType{
-	"arm":    Arm,
-	"arm64":  Arm64,
-	"mips":   Mips,
-	"mips64": Mips64,
-	"x86":    X86,
-	"x86_64": X86_64,
+	"aarch64": Aarch64,
+	"arm":     Arm,
+	"arm64":   Arm64,
+	"mips":    Mips,
+	"mips64":  Mips64,
+	"x86":     X86,
+	"x86_64":  X86_64,
 }
 
 /*
@@ -199,7 +201,7 @@ var (
 	Android     = NewOsType("android", Device, false)
 
 	osArchTypeMap = map[OsType][]ArchType{
-		Linux:       []ArchType{X86, X86_64},
+		Linux:       []ArchType{X86, X86_64, Arm, Arm64, Aarch64},
 		LinuxBionic: []ArchType{X86_64},
 		Darwin:      []ArchType{X86, X86_64},
 		Windows:     []ArchType{X86, X86_64},
@@ -821,6 +823,10 @@ func decodeTargetProductVariables(config *config) (map[OsClass][]Target, error) 
 			addTarget(Android, *variables.DeviceSecondaryArch,
 				variables.DeviceSecondaryArchVariant, variables.DeviceSecondaryCpuVariant,
 				variables.DeviceSecondaryAbi)
+
+			if targetErr != nil {
+				return nil, targetErr
+			}
 
 			deviceArches := targets[Device]
 			if deviceArches[0].Arch.ArchType.Multilib == deviceArches[1].Arch.ArchType.Multilib {

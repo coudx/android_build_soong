@@ -90,6 +90,7 @@ bootstrap_go_package {
         "cc/config/x86_linux_host.go",
         "cc/config/x86_linux_bionic_host.go",
         "cc/config/x86_windows_host.go",
+        "cc/config/arm_linux_host.go",
     ],
     testSrcs: [
         "cc/config/tidy_test.go",
