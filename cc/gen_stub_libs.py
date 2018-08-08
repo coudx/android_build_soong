@@ -25,6 +25,7 @@ import re
 ALL_ARCHITECTURES = (
     'arm',
     'arm64',
+    'aarch64',
     'mips',
     'mips64',
     'x86',
