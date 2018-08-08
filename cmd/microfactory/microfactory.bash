@@ -23,7 +23,7 @@
 # Ensure GOROOT is set to the in-tree version.
 case $(uname) in
     Linux)
-        export GOROOT="${TOP}/prebuilts/go/linux-x86/"
+        #export GOROOT="${TOP}/prebuilts/go/linux-x86/"
         ;;
     Darwin)
         export GOROOT="${TOP}/prebuilts/go/darwin-x86/"
@@ -76,7 +76,7 @@ function build_go
 
     local mf_cmd
     if [ $from_src -eq 1 ]; then
-        mf_cmd="${GOROOT}/bin/go run ${mf_src}/microfactory.go"
+        mf_cmd="/usr/bin/env go run ${mf_src}/microfactory.go"
     else
         mf_cmd="${mf_bin}"
     fi
