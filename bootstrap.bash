@@ -33,9 +33,9 @@ case $(uname) in
 	;;
     *) echo "unknown OS:" $(uname) && exit 1;;
 esac
-export GOROOT="${SRCDIR}/prebuilts/go/$PREBUILTOS/"
-export GOARCH="amd64"
-export GOCHAR="6"
+#export GOROOT="${SRCDIR}/prebuilts/go/$PREBUILTOS/"
+#export GOARCH="amd64"
+#export GOCHAR="6"
 
 if [[ $# -eq 0 ]]; then
     mkdir -p $BUILDDIR
