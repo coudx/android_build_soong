@@ -147,6 +147,50 @@ func (t *toolchainLinuxAarch64) YasmFlags() string {
 	return "${config.LinuxAarch64YasmFlags}"
 }
 
+func (t *toolchainLinuxArm) InstructionSetFlags(isa string) (string, error) {
+    switch isa {
+    case "arm":
+        return "-O2 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops", nil
+    case "thumb":
+        return "-mthumb -Os -fomit-frame-pointer -fno-strict-aliasing", nil
+    default:
+        return t.toolchainBase.InstructionSetFlags(isa)
+    }
+}
+
+func (t *toolchainLinuxArm) ClangInstructionSetFlags(isa string) (string, error) {
+    switch isa {
+    case "arm":
+        return "-O2 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops", nil
+    case "thumb":
+        return "-mthumb -Os -fomit-frame-pointer -fno-strict-aliasing", nil
+    default:
+        return t.toolchainBase.ClangInstructionSetFlags(isa)
+    }
+}
+
+func (t *toolchainLinuxAarch64) InstructionSetFlags(isa string) (string, error) {
+    switch isa {
+    case "arm":
+        return "-O2 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops", nil
+    case "thumb":
+        return "-mthumb -Os -fomit-frame-pointer -fno-strict-aliasing", nil
+    default:
+        return t.toolchainBase.InstructionSetFlags(isa)
+    }
+}
+
+func (t *toolchainLinuxAarch64) ClangInstructionSetFlags(isa string) (string, error) {
+    switch isa {
+    case "arm":
+        return "-O2 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops", nil
+    case "thumb":
+        return "-mthumb -Os -fomit-frame-pointer -fno-strict-aliasing", nil
+    default:
+        return t.toolchainBase.ClangInstructionSetFlags(isa)
+    }
+}
+
 var toolchainLinuxArmSingleton Toolchain = &toolchainLinuxArm{}
 var toolchainLinuxAarch64Singleton Toolchain = &toolchainLinuxAarch64{}
 
